@@ -2,7 +2,7 @@
 
 Welcome to the AirBnB clone project!
 
-## ***Descrption***
+# ***Descrption***
 
 This is an ALX AirBnB clone project, it is a complete web application, integrating database storage, a back-end API, and front-end interfacing in a clone of AirBnB.
 
