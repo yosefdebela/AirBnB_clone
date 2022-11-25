@@ -4,6 +4,5 @@ Welcome to the AirBnB clone project!
 
 # ***Description***
 
-This is an ALX AirBnB clone project, it is a complete web application, integrating database storage, a back-end API, and front-end interfacing in a clone of AirBnB.
-
-The project currently only implements the back-end console.
+This is an ALX AirBnB clone project, it is a complete web application, integrating database storage, a back-end API, and front-end interfacing in a clone of AirBnB. This project is the first part of the AirBnB clone project and uses a parent class with other classes that inherit from the parent class and uses Json for file storage. rest of the project to continue in subsequent projects....
+This project currently only implements the back-end console.
