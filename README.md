@@ -11,56 +11,14 @@ This project currently only implements the back-end console.
 |     **COMMAND**  |  SAMPLE USAGE            |       FUNCTIONALITY                           |
 |------------------|--------------------------|-----------------------------------------------|
 |       Help       |     help                 |  displays all commands available              |
-
 |       Create     |  create <class>          |  creates new object (ex. a new User, Place)   |
-
 |       Update     |  User.update('123',      |  updates attribute of an object               |
-|                  |  {'name' : 'Greg_n_Mel'})|                                               |    
-  
+|                  |  {'name' : 'Greg_n_Mel'})|                                               |     
 |       Destroy    |  User.destroy('123')     |   destroys specified object                   |
-
 |       Show       |  User.show('123')        |   retrieve an object from a file, a database  |
-
 |       All        |    User.all()            |  display all objects in class                 |
-
 |       Count      |   User.count()           |  returns count of objects in specified class  |
-|                  |
+|                  |                          |                                               |
 |       Quit       |     quit                 |       exits                                   |
  
   
-  
-  # **USAGE**
-  ## Interactive Mode
-  $ ./console.py
-(hbnb) help
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-
-(hbnb)
-(hbnb)
-(hbnb) quit
-$
-  
-  
-  ## Non-Interactive Mode
-  $ echo "help" | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb)
-$
-$ cat test_help
-help
-$
-$ cat test_help | ./console.py
-(hbnb)
-
-Documented commands (type help <topic>):
-========================================
-EOF  help  quit
-(hbnb)
-$
