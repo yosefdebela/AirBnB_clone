@@ -8,7 +8,7 @@ This is an ALX AirBnB clone project, it is a complete web application, integrati
 This project currently only implements the back-end console.
 
   # ***How to Use Command Interpreter***
-|     **COMMAND**  |  SAMPLE USAGE            |       FUNCTIONALITY                           |
+|     **COMMANDS**  |  SAMPLE USAGE            |       FUNCTIONALITY                           |
 |------------------|--------------------------|-----------------------------------------------|
 |       Help       |     help                 |  displays all commands available              |
 |       Create     |  create <class>          |  creates new object (ex. a new User, Place)   |
