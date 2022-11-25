@@ -9,7 +9,7 @@ This project currently only implements the back-end console.
 
   # ***How to Use Command Interpreter***
 |     **COMMAND**  |  SAMPLE USAGE            |       FUNCTIONALITY                           |
------------------------------------------------------------------------------------------------
+|------------------|--------------------------|-----------------------------------------------|
 |       Help       |     help                 |  displays all commands available              |
 
 |       Create     |  create <class>          |  creates new object (ex. a new User, Place)   |
@@ -26,7 +26,7 @@ This project currently only implements the back-end console.
 |       Count      |   User.count()           |  returns count of objects in specified class  |
 |                  |
 |       Quit       |     quit                 |       exits                                   |
- -----------------------------------------------------------------------------------------------
+ 
   
   
   # **USAGE**
