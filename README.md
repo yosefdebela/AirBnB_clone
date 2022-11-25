@@ -12,8 +12,7 @@ This project currently only implements the back-end console.
 |------------------|--------------------------|-----------------------------------------------|
 |       Help       |     help                 |  displays all commands available              |
 |       Create     |  create <class>          |  creates new object (ex. a new User, Place)   |
-|       Update     |  User.update('123',      |  updates attribute of an object               |
-                    {'name' : 'Yosef_n_Pat'})                                                    
+|       Update     |  User.update('123', {'name' : 'Yosef_n_Pat'})     |  updates attribute of an object|                
 |       Destroy    |  User.destroy('123')     |   destroys specified object                   |
 |       Show       |  User.show('123')        |   retrieve an object from a file, a database  |
 |       All        |    User.all()            |  display all objects in class                 |
