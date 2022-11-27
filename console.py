@@ -2,9 +2,8 @@
 """Module for the entry point of the command interpreter."""
 
 import cmd
-impport models
 from models.base_model import BaseModel
-from models.engine import file_storage
+from models import storage
 import re
 import json
 
