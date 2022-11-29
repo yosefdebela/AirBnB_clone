@@ -60,11 +60,11 @@ class TestFileStorage(unittest.TestCase):
         """
         m_storage = FileStorage()
         instances_dic = m_storage.all()
-        melissa = User()
-        melissa.id = 999999
-        melissa.name = "Patricia"
+        patricia = User()
+        patricia.id = 999999
+        patricia.name = "Patricia"
         m_storage.new(patricia)
-        key = melissa.__class__.__name__ + "." + str(patricia.id)
+        key = patricia.__class__.__name__ + "." + str(patricia.id)
         #print(instances_dic[key])
         self.assertIsNotNone(instances_dic[key])
 
