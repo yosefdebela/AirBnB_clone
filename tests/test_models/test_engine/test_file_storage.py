@@ -33,7 +33,7 @@ class TestFileStorage(unittest.TestCase):
     def teardown(self):
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_style_check(self):
@@ -65,7 +65,7 @@ class TestFileStorage(unittest.TestCase):
         patricia.name = "Patricia"
         m_storage.new(patricia)
         key = patricia.__class__.__name__ + "." + str(patricia.id)
-        #print(instances_dic[key])
+        # print(instances_dic[key])
         self.assertIsNotNone(instances_dic[key])
 
     def test_reload(self):
@@ -75,7 +75,7 @@ class TestFileStorage(unittest.TestCase):
         a_storage = FileStorage()
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
         with open("file.json", "w") as f:
             f.write("{}")
