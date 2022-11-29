@@ -123,6 +123,17 @@ class HBNBCommand(cmd.Cmd):
             print("** attribute name missing **")
         else:
             print("** value missing **")
+        else:
+            obj = self.storage.all()[instance_id]
+              if arg_list[2] in type(obj).__dict__:
+              v_type = type(obj.__class__.__dict__[arg_list[2]])
+              setattr(obj, arg_list[2], v_type(arg_list[3]))
+         else:
+              setattr(obj, arg_list[2], arg_list[3])
+         else:
+            print("** no instance found **")
+
+            self.storage.save()
 
     def do_count(self, line):
         """Display count of instances specified"""
