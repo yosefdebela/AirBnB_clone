@@ -9,7 +9,7 @@ Parent of all classes
 """
 
 
-class BaseModel():
+class BaseModel:
     """Base class for Airbnb clone project
     Methods:
         __init__(self, *args, **kwargs)
@@ -29,7 +29,7 @@ class BaseModel():
                     self.created_at = datetime.strptime(kwargs["created_at"],
                                                         "%Y-%m-%dT%H:%M:%S.%f")
                 elif "updated_at" == key:
-                    self.updated_at = datetime.strptime(kwargs["updated_at"], "%Y-%m-%dT-%H:%M:%S.%f")
+                    self.updated_at = datetime.strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
                 elif "__class__" == key:
                     pass
                 else:
@@ -51,7 +51,7 @@ class BaseModel():
         """
         returns string representation
         """
-        return (self.__str__())
+        return self.__str__()
 
     def save(self):
         """

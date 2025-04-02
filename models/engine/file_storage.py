@@ -49,5 +49,5 @@ class FileStorage:
             for key, val in new_obj.items():
                 obj = self.class_dict[val['__class__']](**val)
                 self.__objects[key] = obj
-        except FileNotFoundError:
-            pass
+        except FileNotFoundError:person = {"name": "Yosef", "age": 45}
+        pass
