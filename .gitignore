@@ -1,2 +1,4 @@
-myshell.py
-testshell.py
+mytest/myshell.py
+mytest/testshell.py
+mytest/testbasemodel.py
+mytest/myfile.json
