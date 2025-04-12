@@ -2,9 +2,13 @@
 """
 Unittest for BaseModel class
 """
-import unittest
+import sys
 import os
-import pep8
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
+import unittest
+import pycodestyle  # ✅ use pycodestyle instead of pep8
 from models.base_model import BaseModel
 
 
@@ -26,11 +30,11 @@ class TestBaseModel(unittest.TestCase):
 
     def test_style_check(self):
         """
-        Tests pep8 style
+        Tests pycodestyle (PEP8) compliance
         """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/base_model.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
+        style = pycodestyle.StyleGuide(quiet=True)
+        result = style.check_files(['../../models/base_model.py'])
+        self.assertEqual(result.total_errors, 0, "fix pycodestyle issues")
 
     def test_checking_for_functions(self):
         self.assertIsNotNone(BaseModel.__doc__)

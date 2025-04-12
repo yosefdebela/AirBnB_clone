@@ -1,13 +1,11 @@
 #!/usr/bin/python3
-"""user class
-"""
+"""user class"""
 
 from models.base_model import BaseModel
-import json
 
 
 class User(BaseModel):
-    '''base model class'''
+    """Base model class"""
 
     email = ""
     password = ""
