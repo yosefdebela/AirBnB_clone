@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-
-import unittest
 import os
-import pep8
+import sys
+import pycodestyle
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+import unittest
+
 from models.state import State
 from models.base_model import BaseModel
 
@@ -26,8 +28,8 @@ class TestState(unittest.TestCase):
         """
         Tests pep8 style
         """
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/state.py'])
+        style = pycodestyle.StyleGuide(quiet=True)
+        p = style.check_files(['../../models/state.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
 
     def test_is_subclass(self):
