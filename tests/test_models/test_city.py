@@ -2,10 +2,11 @@
 import os
 import sys
 import pycodestyle
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 import unittest
 from models.city import City
 from models.base_model import BaseModel
+sys.path.append(os.path.abspath(os.path.join
+                                (os.path.dirname(__file__), '../../')))
 
 
 class TestCity(unittest.TestCase):
