@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
         else:
             words = line.split(' ')
-            if words[0] not in storage.classes():
+            if words[0] not in storage.class_dict:
                 print("** class doesn't exist **")
             elif len(words) < 2:
                 print("** instance id missing **")
