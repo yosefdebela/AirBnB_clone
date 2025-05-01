@@ -182,7 +182,7 @@ class HBNBCommand(cmd.Cmd):
         value = match.group(4)
         if not match:
             print("** class name missing **")
-        elif classname not in storage.classes():
+        elif classname not in storage.class_dict:
             print("** class doesn't exist **")
         elif uid is None:
             print("** instance id missing **")
