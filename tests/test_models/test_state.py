@@ -2,13 +2,11 @@
 import os
 import sys
 import pycodestyle
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
 import unittest
-
+sys.path.append(os.path.abspath(os.path.join
+                              (os.path.dirname(__file__), '../../')))
 from models.state import State
 from models.base_model import BaseModel
-
-
 class TestState(unittest.TestCase):
 
     @classmethod
