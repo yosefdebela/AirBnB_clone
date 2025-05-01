@@ -143,7 +143,7 @@ class HBNBCommand(cmd.Cmd):
         """
         if line != "":
             words = line.split(' ')
-            if words[0] not in storage.classes():
+            if words[0] not in storage.class_dict:
                 print("** class doesn't exist **")
             else:
                 nl = [str(obj) for key, obj in storage.all().items()
