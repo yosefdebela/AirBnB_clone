@@ -6,6 +6,7 @@ from models.base_model import BaseModel
 from models import storage
 import re
 import json
+from shlex import split
 
 
 class HBNBCommand(cmd.Cmd):
@@ -51,27 +52,27 @@ class HBNBCommand(cmd.Cmd):
     #     self.onecmd(command)
     #     return command
 
-    def update_dict(self, classname, uid, s_dict):
-        """Helper method for update() with a dictionary."""
-        s = s_dict.replace("'", '"')
-        d = json.loads(s)
-        if not classname:
-            print("** class name missing **")
-        elif classname not in storage.classes():
-            print("** class doesn't exist **")
-        elif uid is None:
-            print("** instance id missing **")
-        else:
-            key = "{}.{}".format(classname, uid)
-            if key not in storage.all():
-                print("** no instance found **")
-            else:
-                attributes = storage.attributes()[classname]
-                for attribute, value in d.items():
-                    if attribute in attributes:
-                        value = attributes[attribute](value)
-                    setattr(storage.all()[key], attribute, value)
-                storage.all()[key].save()
+    # def update_dict(self, classname, uid, s_dict):
+    #     """Helper method for update() with a dictionary."""
+    #     s = s_dict.replace("'", '"')
+    #     d = json.loads(s)
+    #     if not classname:
+    #         print("** class name missing **")
+    #     elif classname not in storage.classes():
+    #         print("** class doesn't exist **")
+    #     elif uid is None:
+    #         print("** instance id missing **")
+    #     else:
+    #         key = "{}.{}".format(classname, uid)
+    #         if key not in storage.all():
+    #             print("** no instance found **")
+    #         else:
+    #             attributes = storage.attributes()[classname]
+    #             for attribute, value in d.items():
+    #                 if attribute in attributes:
+    #                     value = attributes[attribute](value)
+    #                 setattr(storage.all()[key], attribute, value)
+    #             storage.all()[key].save()
 
     def do_EOF(self, line):
         """Handles End Of File character.
@@ -92,12 +93,14 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, line):
         """Creates an instance.
         """
+        word  = line.split(' ')
         if line == "" or line is None:
             print("** class name missing **")
-        elif line not in storage.class_dict:
+        elif word[0] not in storage.class_dict:
             print("** class doesn't exist **")
         else:
-            b = storage.class_dict[line]()
+            b = storage.class_dict[word[0]]()
+            b.to_dict()
             b.save()
             print(b.id)
 
@@ -166,53 +169,64 @@ class HBNBCommand(cmd.Cmd):
                 k for k in storage.all() if k.startswith(
                     words[0] + '.')]
             print(len(matches))
+    def do_print(self, line):
+        """Prints the string representation of an instance.
+        """
+        if line == "" or line is None:
+            print("** class name missing **")
+        else:
+            words = line.split(' ')
+            if words[0] not in storage.class_dict:
+                print("** class doesn't exist **")
+            elif len(words) < 2:
+                print("** instance id missing **")
+            else:
+                key = "{}.{}".format(words[0], words[1])
+                if key not in storage.all():
+                    print("** no instance found **")
+                else:
+                    print(storage.all()[key])
+
+
 
     def do_update(self, line):
         """Updates an instance by adding or updating attribute.
         """
-        if line == "" or line is None:
+        from models import storage
+        try:
+            if not line:
+                raise SyntaxError()
+            my_list = split(line, " ")
+            if my_list[0] not in storage.class_dict:
+                raise NameError()
+            if len(my_list) == 1:
+                raise IndexError()
+            objects = storage.all()
+            key = my_list[0] + '.' + my_list[1]
+            if key not in objects:
+                raise KeyError()
+            if len(my_list) < 4:
+                raise AttributeError()
+            # if len(my_list) < 4:
+            #     raise ValueError()
+            v = objects[key]
+            try:
+                v.__dict__[my_list[2]] = eval(my_list[3])
+            except Exception:
+                v.__dict__[my_list[2]] = my_list[3]
+                v.save()
+        except SyntaxError:
             print("** class name missing **")
-            return
-
-        rex = r'^(\S+)(?:\s(\S+)(?:\s(\S+)(?:\s((?:"[^"]*")|(?:(\S)+)))?)?)?'
-        match = re.search(rex, line)
-        classname = match.group(1)
-        uid = match.group(2)
-        attribute = match.group(3)
-        value = match.group(4)
-        if not match:
-            print("** class name missing **")
-        elif classname not in storage.class_dict:
+        except NameError:
             print("** class doesn't exist **")
-        elif uid is None:
+        except IndexError:
             print("** instance id missing **")
-        else:
-            key = "{}.{}".format(classname, uid)
-            if key not in storage.all():
-                print("** no instance found **")
-            elif not attribute:
-                print("** attribute name missing **")
-            elif not value:
-                print("** value missing **")
-            else:
-                cast = None
-                if not re.search('^".*"$', value):
-                    if '.' in value:
-                        cast = float
-                    else:
-                        cast = int
-                else:
-                    value = value.replace('"', '')
-                attributes = storage.attributes()[classname]
-                if attribute in attributes:
-                    value = attributes[attribute](value)
-                elif cast:
-                    try:
-                        value = cast(value)
-                    except ValueError:
-                        pass  # fine, stay a string then
-                setattr(storage.all()[key], attribute, value)
-                storage.all()[key].save()
+        except KeyError:
+            print("** no instance found **")
+        except AttributeError:
+            print("** attribute value missing **")
+        except ValueError:
+            print("** value missing **")
 
 
 if __name__ == '__main__':
