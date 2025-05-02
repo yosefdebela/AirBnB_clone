@@ -162,7 +162,7 @@ class HBNBCommand(cmd.Cmd):
         words = line.split(' ')
         if not words[0]:
             print("** class name missing **")
-        elif words[0] not in storage.classes():
+        elif words[0] not in storage.class_dict:
             print("** class doesn't exist **")
         else:
             matches = [
