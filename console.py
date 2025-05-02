@@ -205,10 +205,10 @@ class HBNBCommand(cmd.Cmd):
             key = my_list[0] + '.' + my_list[1]
             if key not in objects:
                 raise KeyError()
-            if len(my_list) < 4:
+            if len(my_list) < 3:
                 raise AttributeError()
-            # if len(my_list) < 4:
-            #     raise ValueError()
+            if len(my_list) < 4:
+                raise ValueError()
             v = objects[key]
             try:
                 v.__dict__[my_list[2]] = eval(my_list[3])
